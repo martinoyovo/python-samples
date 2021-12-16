@@ -3,9 +3,10 @@ from math import sqrt
 class Vector:
 
     #initialization
-    def __init__(self, x=0, y=0):
+    def __init__(self, x=0, y=0, z=0):
         self.x = x
         self.y = y
+        self.z = z
 
     #magic method to customize object representation
     def __repr__(self):
@@ -24,10 +25,24 @@ class Vector:
     def sum(self, t):
         self.x+=t.x
         self.y+=t.y
+        self.z+=t.z
 
     def sub(self, t):
         self.x-=t.x
         self.y-=t.y
+        self.z-=t.z
+
+    def __truediv__(self, t):
+        if(isinstance(t, Vector)):
+            self.x=self.x/t.x
+            self.y=self.y/t.y
+            self.z=self.z/t.z
+        elif(isinstance(t, (int, float))):
+            self.x=self.x/t
+            self.y=self.y/t
+            self.z=self.z/t
+        else:
+            raise TypeError('Operand must be a vector, integer or float')
 
 v1 = Vector(x=3, y=0)
 v2 = Vector(x=6, y=3)
